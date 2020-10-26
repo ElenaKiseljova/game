@@ -1,0 +1,27 @@
+{
+  "name": "code-and-magic",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Учебный проект «Код и Магия» от HTML Academy",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "eslint": "4.18.2",
+    "eslint-config-htmlacademy": "0.2.x"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "scripts": {
+    "test": "eslint js/"
+  },
+  "engines": {
+    "node": "^6.10"
+  }
+}

@@ -183,38 +183,39 @@
 
 <script type="text/javascript">
   'use strict';
-  
+
   (function () {
     var DOWNWIND_SPEED = 5;
     var UPWIND_SPEED = 2;
-  
+
     var fireballSize = 22;
     var wizardSpeed = 3;
     var wizardWidth = 70;
-      
+
     var getFireballSpeed = function (left) {
       if (left === true) {
         return DOWNWIND_SPEED;
       } else {
         return UPWIND_SPEED;
       }
-    }  
-    
+    }
+
     var getWizardHeight = function () {
       return 1.337 * wizardWidth;
     }
-    
+
     var getWizardX = function (width) {
       return (width / 2) - (wizardWidth / 2);
     }
-    
+
     var getWizardY = function (height) {
       return (height * 2 / 3) - (getWizardHeight() / 2);
     }
   })();
-  
-  
+
+
 </script>
+<script src="js/stat.js"></script>
 <script src="js/game.js"></script>
 
 </body>

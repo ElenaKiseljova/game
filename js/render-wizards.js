@@ -1,6 +1,11 @@
 'use strict';
 
 (function () {
+  var FIRST_NAMES = ['Иван', 'Хуан', 'Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
+  var LAST_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
+  var COLOR_COATS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+  var СOLOR_EYES = ['black', 'red', 'blue', 'yellow', 'green'];
+  var COLOR_FIREBALLS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
   var randomCoefficient = function (parameter) {
     var coefficient = Math.trunc(Math.random() * parameter.length);
@@ -8,29 +13,36 @@
     return coefficient;
   };
 
+  var setup = document.querySelector('.setup');
 
-  var setupColorCoat = setup.querySelector('.wizard-coat');
-  var setupColorFireball = setup.querySelector('.setup-fireball-wrap');
-  var setupColorEyes = setup.querySelector('.wizard-eyes');
   var inputColorCoat = setup.querySelector('input[name="coat-color"]');
   var inputColorEyes = setup.querySelector('input[name="eyes-color"]');
   var inputColorFireball = setup.querySelector('input[name="fireball-color"]');
 
+  var setupColorCoat = setup.querySelector('.wizard-coat');
+  var setupColorFireball = setup.querySelector('.setup-fireball-wrap');
+  var setupColorEyes = setup.querySelector('.wizard-eyes');
+
+  window.colorize(setupColorCoat);
+  window.colorize(setupColorFireball);
+  window.colorize(setupColorEyes);
+
   setupColorCoat.addEventListener('click', function () {
     let color = COLOR_COATS[randomCoefficient(COLOR_COATS)];
-    setupColorCoat.style.fill = color;
+    //setupColorCoat.style.fill = color;
+
     inputColorCoat.value = color;
   });
 
   setupColorFireball.addEventListener('click', function () {
     let color = COLOR_FIREBALLS[randomCoefficient(COLOR_FIREBALLS)];
-    setupColorFireball.style.backgroundColor = color;
+    //setupColorFireball.style.backgroundColor = color;
     inputColorFireball.value = color;
   });
 
   setupColorEyes.addEventListener('click', function () {
     let color = СOLOR_EYES[randomCoefficient(СOLOR_EYES)];
-    setupColorEyes.style.fill = color;
+    //setupColorEyes.style.fill = color;
     inputColorEyes.value = color;
   });
 

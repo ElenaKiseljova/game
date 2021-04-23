@@ -13,15 +13,15 @@
     return coefficient;
   };
 
-  var setup = document.querySelector('.setup');
+  var userDialog = document.querySelector('.setup');
 
-  var inputColorCoat = setup.querySelector('input[name="coat-color"]');
-  var inputColorEyes = setup.querySelector('input[name="eyes-color"]');
-  var inputColorFireball = setup.querySelector('input[name="fireball-color"]');
+  var inputColorCoat = userDialog.querySelector('input[name="coat-color"]');
+  var inputColorEyes = userDialog.querySelector('input[name="eyes-color"]');
+  var inputColorFireball = userDialog.querySelector('input[name="fireball-color"]');
 
-  var setupColorCoat = setup.querySelector('.wizard-coat');
-  var setupColorFireball = setup.querySelector('.setup-fireball-wrap');
-  var setupColorEyes = setup.querySelector('.wizard-eyes');
+  var setupColorCoat = userDialog.querySelector('.wizard-coat');
+  var setupColorFireball = userDialog.querySelector('.setup-fireball-wrap');
+  var setupColorEyes = userDialog.querySelector('.wizard-eyes');
 
   window.colorize(setupColorCoat);
   window.colorize(setupColorFireball);
@@ -64,20 +64,47 @@
   var renderWizard = function (wizard) {
     var gamerItem = templateGamer.cloneNode(true);
     gamerItem.querySelector('.setup-similar-label').textContent = wizard.name;
-    gamerItem.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    gamerItem.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    gamerItem.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    gamerItem.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
 
     return gamerItem;
   };
 
-  var fragment = document.createDocumentFragment();
+  var successHandler = function (wizards) {
+    wizards = JSON.parse(wizards);
 
-  for (var j = 0; j < similarGamers.length; j++) {
-    fragment.appendChild(renderWizard(similarGamers[j]));
-  }
+    var fragment = document.createDocumentFragment();
 
-  similarListElement.appendChild(fragment);
+    for (var j = 0; j < 4; j++) {
+      fragment.appendChild(renderWizard(wizards[j]));
+    }
 
-  document.querySelector('.setup-similar').classList.remove('hidden');
+    similarListElement.appendChild(fragment);
 
+    userDialog.querySelector('.setup-similar').classList.remove('hidden');
+  };
+
+  var errorHandler = function (errorMessage) {
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '30px';
+
+    node.textContent = errorMessage;
+
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
+
+  window.load(successHandler, errorHandler);
+
+  var form = userDialog.querySelector('.setup-wizard-form');
+
+  form.addEventListener('submit', function (evt) {
+    window.upload(new FormData(form), function (response) {
+      userDialog.classList.add('hidden');
+    });
+    evt.preventDefault();
+  });
 })();

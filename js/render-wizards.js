@@ -97,12 +97,12 @@
     document.body.insertAdjacentElement('afterbegin', node);
   };
 
-  window.load(successHandler, errorHandler);
+  window.backend.load(successHandler, errorHandler);
 
   var form = userDialog.querySelector('.setup-wizard-form');
 
   form.addEventListener('submit', function (evt) {
-    window.upload(new FormData(form), function (response) {
+    window.backend.save(new FormData(form), function (response) {
       userDialog.classList.add('hidden');
     });
     evt.preventDefault();

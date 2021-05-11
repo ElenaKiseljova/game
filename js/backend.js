@@ -2,9 +2,7 @@
 
 (function () {
   window.backend = {
-    load : function (onLoad, onError) {
-      var URL = 'http://game.webraido.space/data.json';
-
+    load : function (url, onLoad, onError) {
       var xhr = new XMLHttpRequest();
 
       xhr.responseTyte = 'json';
@@ -64,14 +62,14 @@
 
       xhr.timeout = 10000; // 10 с
 
-      xhr.open('GET', URL);
+      xhr.open('GET', url);
 
       //console.log(xhr.readyState);
 
       xhr.send();
     },
     save : function (data, onLoad) {
-      var URL = 'http://game.webraido.space/user.php';
+      var URL = 'http://game/user.php';//'http://game.webraido.space/user.php';
 
       var xhr = new XMLHttpRequest();
 

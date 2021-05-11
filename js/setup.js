@@ -26,31 +26,12 @@
     document.removeEventListener('keydown', onEnterPress, true);
   };
 
-  let formSubmit = function () {
-    setupForm.submit();
-  };
-
   var onEnterPress = function (evt) {
-    /*if (evt.keyCode === ENTER_KEY_CODE) {
-      if (evt.target === setupOpenIcon) {
-        openPopup();
-      }
-      if (evt.target === setupClose) {
-        closePopup();
-      }
-      if (evt.target === setupSubmit) {
-        setupForm.submit();
-      }
-    }*/
-
     if (evt.target === setupOpenIcon) {
       window.util.isEnterEvent(evt, openPopup);
     }
     if (evt.target === setupClose) {
       window.util.isEnterEvent(evt, closePopup);
-    }
-    if (evt.target === setupSubmit) {
-      window.util.isEnterEvent(evt, formSubmit);
     }
 
     return false;
@@ -94,4 +75,26 @@
     document.removeEventListener('keydown', onEnterPress, true);
   });
 
+  setupForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+
+    let formHiddenFields = setupForm.querySelectorAll('input[type="hidden"]');
+    let data = {};
+
+    formHiddenFields.forEach((formHiddenField, i) => {
+      data[i] = {
+        name: formHiddenField.name,
+        value: formHiddenField.value
+      };
+    });
+
+    data = JSON.stringify(data);
+
+    window.backend.save(data, function (response) {
+      console.log(response);
+
+      setup.classList.add('hidden');
+    });
+
+  });
 })();

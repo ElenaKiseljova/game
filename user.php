@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="ru" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <?php
-      var_dump($_GET);
-    ?>
-  </body>
-</html>
+<?php
+  $post = file_get_contents('php://input');
+  $post = json_decode( $post );
+
+  var_dump($post);
+?>

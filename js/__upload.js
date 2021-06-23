@@ -6,7 +6,7 @@
   window.upload = function (data, onSuccess) {
     var xhr = new XMLHttpRequest();
 
-    xhr.responseTyte = 'json';
+    xhr.responseType = 'json';
 
     xhr.addEventListener('load', function (evt) {
       onSuccess(xhr.response);

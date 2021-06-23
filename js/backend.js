@@ -5,11 +5,11 @@
     load : function (url, onLoad, onError) {
       var xhr = new XMLHttpRequest();
 
-      xhr.responseTyte = 'json';
+      xhr.responseType = 'json';
 
       //console.log(xhr.readyState);
 
-      // Сработает, когда сервер вернет отмет
+      // Сработает, когда сервер вернет ответ
       xhr.addEventListener('load', function (evt) {
         var error;
 
@@ -73,7 +73,7 @@
 
       var xhr = new XMLHttpRequest();
 
-      xhr.responseTyte = 'json';
+      xhr.responseType = 'json';
 
       xhr.addEventListener('load', function (evt) {
         onLoad(xhr.response);

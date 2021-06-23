@@ -6,7 +6,7 @@
   window.load = function (onSuccess, onError) {
     var xhr = new XMLHttpRequest();
 
-    xhr.responseTyte = 'json';
+    xhr.responseType = 'json';
 
     //console.log(xhr.readyState);
 

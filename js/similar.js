@@ -99,7 +99,9 @@
 
   // Get object with data wizards
   var successHandler = function (data) {
-    wizards = JSON.parse(data);
+    //console.log(data);
+    //wizards = JSON.parse(data);
+    wizards = data;
 
     updateWizards();
   };
@@ -118,7 +120,7 @@
   };
 
   // Path to file with data wizards on the server
-  var URL = 'http://game/data.json';//'http://game.webraido.space/data.json';
+  var URL = 'http://game/data.json';
 
   // Global function loading data wizards on the server
   window.backend.load(URL, successHandler, errorHandler);

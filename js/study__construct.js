@@ -50,7 +50,6 @@
 
 
   // Офицер под прикрытием
-
   var mrRed = {
     nickname: 'Мистер Красный',
     weapon: OFFICER,
@@ -62,7 +61,7 @@
   // Старт
   startFirefight([mrBlond, mrPink, mrOrange, mrWhite, mrBlue, mrRed]);
 
-  // Когда ф-я вызывается с ключевым словом new - то для нее автоматически моздается новый объект
+  // Когда ф-я вызывается с ключевым словом new - то для нее автоматически создается новый объект
   // и подставляется в качестве контекства this. И этот объект будет возвращен в результате вызова ф-ции
   /*var createGangsterLikeNew = function (nickname) {
     var context = {};
@@ -106,5 +105,5 @@
   // Если мы создаём ф-ю внутри ф-и конструктора - она будет пересоздаваться каждый раз
   var mrAnotherBlondConstruct = new Gangster('Мистер Новейший Блонд');
 
-  console.log(mrBlondConstruct.fire === mrAnotherBlondConstruct.fire);
+  console.log(mrBlondConstruct.fire === mrAnotherBlondConstruct.fire); // false
 })();

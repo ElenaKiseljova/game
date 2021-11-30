@@ -134,7 +134,7 @@ strictMode(); // false
   console.log(greetReturnCA.apply(goodWizard, ['Николай']));
 
   // call можно использовать для подмены контекста в случае, когда параметры можно
-  // перечислить по одному, чтобф не создавать лишний массив
+  // перечислить по одному, чтобы не создавать лишний массив
   var greetMultiCA = function (player1Name, player2Name) {
     console.log('Привет, ' + player1Name + ' и ' + player2Name + '! Меня зовут: ' + this.name);
   };
@@ -182,6 +182,17 @@ strictMode(); // false
   ];
 
   var headers =  document.querySelectorAll('h2');
+  // querySelectorAll - возвращает псевдомассив
+  // Чтобы работать с ним, как с массивом, можно вызвать метод массива и подсунуть ему
+  // вместо массива - псевдомассив
+  /*console.log([].map.call(headers, function (it) {
+    return it.textContent;
+  }));*/
+
+  // Array.from - превращает в массив всё, что похоже на массив (не поддерживается Internet Explorer)
+  console.log(Array.from(headers).map(function (it) {
+    return it.textContent;
+  }));
 
   // Чтобы обойти проблему потери окружения, можно создать ф-ю, которая бы запоминала
   // параметры в момент создания обработчика и возвращала бы правильное замыкание
@@ -233,6 +244,6 @@ strictMode(); // false
   greetWizard.call( {name: 'Лена'} );
   greetWizard.apply( {name: ['Алина']} );
 
-  // bind так же позволяет фиксировать параметры. Второй арзумент
+  // bind так же позволяет фиксировать параметры. Второй аргумент
 
 })();

@@ -74,27 +74,4 @@
   setupSubmit.addEventListener('blur', function () {
     document.removeEventListener('keydown', onEnterPress, true);
   });
-
-  setupForm.addEventListener('submit', function (evt) {
-    evt.preventDefault();
-
-    let formHiddenFields = setupForm.querySelectorAll('input[type="hidden"]');
-    let data = {};
-
-    formHiddenFields.forEach((formHiddenField, i) => {
-      data[i] = {
-        name: formHiddenField.name,
-        value: formHiddenField.value
-      };
-    });
-
-    data = JSON.stringify(data);
-
-    window.backend.save(data, function (response) {
-      console.log(response);
-
-      setup.classList.add('hidden');
-    });
-
-  });
 })();

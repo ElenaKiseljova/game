@@ -7,11 +7,6 @@
   // List for similar wizards
   var similarListElement = document.querySelector('.setup-similar-list');
 
-  // Default colors
-  let coatColor = userDialog.querySelector('input[name="coat-color"]').value;
-  let eyesColor =  userDialog.querySelector('input[name="eyes-color"]').value;
-  let fireballColor = userDialog.querySelector('input[name="fireball-color"]').value;
-
   var wizards = [];
   var wizardsSimilar = [];
 
@@ -19,15 +14,15 @@
   let getRank = function (wizard) {
     let rank = 0;
 
-    if (wizard.colorCoat === coatColor) {
+    if (wizard.colorCoat === window.myWizard.coatColor ) {
       rank += 3;
     }
 
-    if (wizard.colorEyes === eyesColor) {
+    if (wizard.colorEyes === window.myWizard.eyesColor ) {
       rank += 2;
     }
 
-    if (wizard.colorFireball === fireballColor) {
+    if (wizard.colorFireball === window.myWizard.fireballColor ) {
       rank += 1;
     }
 
@@ -45,17 +40,15 @@
     }
   }
 
+  var wizardsComparator = function (left, right) {
+    let rankDiff = getRank(right) - getRank(left);
+
+    return (rankDiff === 0) ? namesComparator(left.name, right.name) : rankDiff;
+  };
+
   // Fynction for update list of wizards
   let updateWizards = function () {
-    wizardsSimilar = wizards.slice().sort(function (left, right) {
-      let rankDiff = getRank(right) - getRank(left);
-
-      if (rankDiff === 0) {
-        rankDiff = namesComparator(left.name, right.name);
-      }
-
-      return rankDiff;
-    });
+    wizardsSimilar = wizards.slice().sort(wizardsComparator);
 
     // Cleaning space list of similar wizards before adding new elements
     similarListElement.innerHTML = '';
@@ -72,29 +65,8 @@
     }
   };
 
-  // Global function for change Default colors by Click on the Coat/Eyes/Fireball
-
-
-
-  window.similar = {
-    onEyesChange : function (color) {
-      eyesColor = color;
-      //console.log(color);
-
-      window.debounce(updateWizards);
-    },
-    onCoatChange : function (color) {
-      coatColor = color;
-      //console.log(color);
-
-      window.debounce(updateWizards);
-    },
-    onFireballChange : function (color) {
-      fireballColor = color;
-      //console.log(color);
-
-      window.debounce(updateWizards);
-    }
+  window.myWizard.onChange = function () {
+    window.debounce(updateWizards);
   };
 
   // Get object with data wizards

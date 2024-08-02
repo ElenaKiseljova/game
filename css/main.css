@@ -29,7 +29,9 @@ button {
   border: 0;
 }
 
-*[tabindex]:focus, button:focus, input:focus {
+*[tabindex]:focus,
+button:focus,
+input:focus {
   outline: none;
   box-shadow: 0 0 10px #fff000;
 }
@@ -192,7 +194,7 @@ main {
   overflow: hidden;
 
   border: 0;
-  box-shadow: 7px 10px 0 rgba(0, 0, 0, 0.30), 0 0 20px rgba(255, 255, 190, 0.3);
+  box-shadow: 7px 10px 0 rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 190, 0.3);
 }
 
 .reviews {
@@ -228,7 +230,7 @@ main {
   left: -1200em;
 }
 
-input[type=radio]:checked + .reviews-filter-item {
+input[type="radio"]:checked + .reviews-filter-item {
   margin-right: 35px;
   margin-left: -15px;
   padding: 0 15px;
@@ -301,7 +303,6 @@ input[type=radio]:checked + .reviews-filter-item {
 
   background: url("../img/icon-star.png") top left repeat-x;
 }
-
 
 .review-rating-one {
   width: 40px;
@@ -464,7 +465,7 @@ footer p {
   margin-left: 15px;
 }
 
-.review-form-group-mark input[type=radio] {
+.review-form-group-mark input[type="radio"] {
   position: absolute;
 
   visibility: hidden;
@@ -481,17 +482,25 @@ footer p {
   width: 40px;
 }
 
-.review-mark-label-1 { width: 40px; }
-.review-mark-label-2 { width: 80px; }
-.review-mark-label-3 { width: 120px; }
-.review-mark-label-4 { width: 160px; }
+.review-mark-label-1 {
+  width: 40px;
+}
+.review-mark-label-2 {
+  width: 80px;
+}
+.review-mark-label-3 {
+  width: 120px;
+}
+.review-mark-label-4 {
+  width: 160px;
+}
 .review-mark-label-5 {
-  background: url('../img/icon-star-inactive-form.png') repeat-x;
+  background: url("../img/icon-star-inactive-form.png") repeat-x;
   width: 200px;
 }
 
-input[type=radio]:checked + .review-mark-label {
-  background: url('../img/icon-star.png') repeat-x;
+input[type="radio"]:checked + .review-mark-label {
+  background: url("../img/icon-star.png") repeat-x;
 }
 
 .review-form-label {
@@ -607,6 +616,9 @@ input[type=radio]:checked + .review-mark-label {
   border-radius: 40px;
   overflow: hidden;
   vertical-align: middle;
+
+  object-fit: cover;
+  object-position: center;
 }
 
 .setup-user-name {
@@ -614,7 +626,7 @@ input[type=radio]:checked + .review-mark-label {
   border: 0;
   color: #fff;
 
-  font-family: 'PT Mono', serif;
+  font-family: "PT Mono", serif;
   font-size: 30px;
   font-weight: 900;
 
@@ -688,7 +700,7 @@ input[type=radio]:checked + .review-mark-label {
 }
 
 .setup-fireball {
-  background: url('../img/fireball-mask.png');
+  background: url("../img/fireball-mask.png");
   background-size: 75px 75px;
   width: 75px;
   height: 75px;
@@ -755,7 +767,6 @@ input[type=radio]:checked + .review-mark-label {
   margin: 5px;
 
   color: #fff;
-
 }
 
 .setup-similar-content {
@@ -864,8 +875,8 @@ input[type=radio]:checked + .review-mark-label {
   position: absolute;
   z-index: 0;
   opacity: 0;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
 
   left: 0;
   top: 0;

@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
 (function () {
   // Setap window
-  var userDialog = document.querySelector('.setup');
+  var userDialog = document.querySelector(".setup");
 
   // List for similar wizards
-  var similarListElement = document.querySelector('.setup-similar-list');
+  var similarListElement = document.querySelector(".setup-similar-list");
 
   var wizards = [];
   var wizardsSimilar = [];
@@ -14,15 +14,15 @@
   let getRank = function (wizard) {
     let rank = 0;
 
-    if (wizard.colorCoat === window.myWizard.coatColor ) {
+    if (wizard.colorCoat === window.myWizard.coatColor) {
       rank += 3;
     }
 
-    if (wizard.colorEyes === window.myWizard.eyesColor ) {
+    if (wizard.colorEyes === window.myWizard.eyesColor) {
       rank += 2;
     }
 
-    if (wizard.colorFireball === window.myWizard.fireballColor ) {
+    if (wizard.colorFireball === window.myWizard.fireballColor) {
       rank += 1;
     }
 
@@ -38,12 +38,12 @@
     } else {
       return 0;
     }
-  }
+  };
 
   var wizardsComparator = function (left, right) {
     let rankDiff = getRank(right) - getRank(left);
 
-    return (rankDiff === 0) ? namesComparator(left.name, right.name) : rankDiff;
+    return rankDiff === 0 ? namesComparator(left.name, right.name) : rankDiff;
   };
 
   // Fynction for update list of wizards
@@ -51,7 +51,7 @@
     wizardsSimilar = wizards.slice().sort(wizardsComparator);
 
     // Cleaning space list of similar wizards before adding new elements
-    similarListElement.innerHTML = '';
+    similarListElement.innerHTML = "";
 
     for (var i = 0; i < 4; i++) {
       //console.log(wizardsSimilar[i]);
@@ -61,7 +61,7 @@
 
       similarListElement.appendChild(fragment);
 
-      userDialog.querySelector('.setup-similar').classList.remove('hidden');
+      userDialog.querySelector(".setup-similar").classList.remove("hidden");
     }
   };
 
@@ -79,21 +79,19 @@
   };
 
   var errorHandler = function (errorMessage) {
-    var node = document.createElement('div');
-    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
-    node.style.position = 'absolute';
+    var node = document.createElement("div");
+    node.style =
+      "z-index: 100; margin: 0 auto; text-align: center; background-color: red;";
+    node.style.position = "absolute";
     node.style.left = 0;
     node.style.right = 0;
-    node.style.fontSize = '30px';
+    node.style.fontSize = "30px";
 
     node.textContent = errorMessage;
 
-    document.body.insertAdjacentElement('afterbegin', node);
+    document.body.insertAdjacentElement("afterbegin", node);
   };
 
-  // Path to file with data wizards on the server
-  var URL = 'http://game/data.json';
-
   // Global function loading data wizards on the server
-  window.backend.load(URL, successHandler, errorHandler);
+  window.backend.load(successHandler, errorHandler);
 })();

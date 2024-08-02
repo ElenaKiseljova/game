@@ -1,16 +1,21 @@
-'use strict';
+"use strict";
 
 (function () {
   window.backend = {
-    load : function (url, onLoad, onError) {
+    BASE_URL: `http://${location.host}/game`,
+    ROUTES: {
+      DATA: "/data.json",
+    },
+
+    load: function (onLoad, onError) {
       var xhr = new XMLHttpRequest();
 
-      xhr.responseType = 'json';
+      xhr.responseType = "json";
 
       //console.log(xhr.readyState);
 
       // Сработает, когда сервер вернет ответ
-      xhr.addEventListener('load', function (evt) {
+      xhr.addEventListener("load", function (evt) {
         var error;
 
         switch (xhr.status) {
@@ -18,16 +23,16 @@
             onLoad(xhr.response);
             break;
           case 400:
-            error = 'Неверный запрос';
+            error = "Неверный запрос";
             break;
           case 401:
-            error = 'Пользователь не авторизован';
+            error = "Пользователь не авторизован";
             break;
           case 404:
-            error = 'Ничего не найдено';
+            error = "Ничего не найдено";
             break;
           default:
-            error = 'Статус ответа: ' + xhr.status + ' ' + xhr.statusText;
+            error = "Статус ответа: " + xhr.status + " " + xhr.statusText;
         }
 
         if (error) {
@@ -45,43 +50,43 @@
           console.error(e.message);
         }
         */
-        console.log(xhr.status + ' ' + xhr.statusText);
+        console.log(xhr.status + " " + xhr.statusText);
       });
 
       // Ошибка соединения (нет интернета)
 
-      xhr.addEventListener('error', function () {
-        onError('Произошла ошибка соединения');
+      xhr.addEventListener("error", function () {
+        onError("Произошла ошибка соединения");
       });
 
       // Превышен таймаут
 
-      xhr.addEventListener('timeout', function () {
-        onError('Запрос не успел выполниться за ' + xhr.timeout + ' мс');
+      xhr.addEventListener("timeout", function () {
+        onError("Запрос не успел выполниться за " + xhr.timeout + " мс");
       });
 
       xhr.timeout = 10000; // 10 с
 
-      xhr.open('GET', url);
+      xhr.open("GET", `${this.BASE_URL}${this.ROUTES.DATA}`);
 
       //console.log(xhr.readyState);
 
       xhr.send();
     },
-    save : function (data, onLoad) {
-      var URL = 'http://game/user.php';//'http://game.webraido.space/user.php';
+    save: function (data, onLoad) {
+      var URL = this.BASE_URL;
 
       var xhr = new XMLHttpRequest();
 
-      xhr.responseType = 'json';
+      xhr.responseType = "json";
 
-      xhr.addEventListener('load', function (evt) {
+      xhr.addEventListener("load", function (evt) {
         onLoad(xhr.response);
       });
 
-      xhr.open('POST', URL);
+      xhr.open("POST", URL);
 
       xhr.send(data);
-    }
+    },
   };
 })();
